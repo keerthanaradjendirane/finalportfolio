@@ -1,6 +1,7 @@
 import streamlit as st
 from PIL import Image
 import time
+import os
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -334,9 +335,12 @@ for char in about_me_text:
     time.sleep(0.00005)
 
 # Load your resume file
-with open("resume.pdf", "rb") as file:
-    resume_data = file.read()
+# Safely build the path to resume.pdf based on this file's location
+resume_path = os.path.join(os.path.dirname(__file__), "resume.pdf")
 
+# Load your resume file
+with open(resume_path, "rb") as file:
+    resume_data = file.read()
 # Add a professional download button with accent color
 st.download_button(
     label="📄 Download My Resume",
